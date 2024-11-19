@@ -27,6 +27,9 @@ class Point:
     def __mul__(self, other):
         return self.x * other.x + self.y * other.y  # iloczyn skalarny
 
+    def cross(self, other):
+        return self.x * other.y - self.y * other.x  # iloczyn wektorowy
+
     def length(self):
         return math.sqrt(self.x ** 2 + self.y ** 2)  # długość wektora
 
@@ -60,6 +63,10 @@ class TestPoint(unittest.TestCase):
     def test_mul(self):
         result = Point(2, 3) * Point(1, 4)
         self.assertEqual(result, 14)  # (2*1 + 3*4) = 2 + 12 = 14
+
+    def test_cross(self):
+        result = Point(2, 3).cross(Point(1, 4))
+        self.assertEqual(result, 5)  # (2*4 - 3*1) = 8 - 3 = 5
 
     def test_length(self):
         self.assertAlmostEqual(Point(3, 4).length(), 5.0)  # sqrt(3^2 + 4^2) = 5.0
